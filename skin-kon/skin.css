@@ -1,0 +1,312 @@
+/* ============================================================
+   K-ON! 轻音少女 · 放课后TEA TIME  —  skin.css
+   L1 官方 token 重映射 + L2 语义样式（均被皮肤中心自动限定在
+   html[data-dsh-skin="kon"] 作用域内）。
+   ============================================================ */
+
+:root {
+  /* —— 可爱圆体字体（UI 用；正文/markdown 保持可读）—— */
+  --dsw-font-family: "Yuanti SC", "YouYuan", "幼圆", "ZCOOL KuaiLe",
+    "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Helvetica Neue",
+    "Segoe UI", sans-serif;
+
+  /* —— 主题强调色（默认/主页：樱花粉；会话内随角色切换）—— */
+  --kon-accent: #f26b8f;
+  --kon-accent-ink: #b13b62;
+  --kon-accent-ink: color-mix(in srgb, var(--kon-accent) 64%, #2b2b33);
+
+  /* 强调色衍生（浅色模式，向白取色） */
+  --kon-tint-1: #fbe3ea;
+  --kon-tint-1: color-mix(in srgb, var(--kon-accent) 12%, #ffffff);
+  --kon-tint-2: #f6cfdc;
+  --kon-tint-2: color-mix(in srgb, var(--kon-accent) 24%, #ffffff);
+  --kon-tint-3: #efb7c9;
+  --kon-tint-3: color-mix(in srgb, var(--kon-accent) 38%, #ffffff);
+
+  color: #2a1a22;
+  background-color: #fbeff2;
+
+  /* 工作台对话文字加深，保证可读性 */
+  --dsw-alias-label-primary: #24141d;
+  --dsw-alias-label-secondary: #3a2530;
+  --dsw-alias-label-tertiary: #4b3342;
+  --dsw-alias-label-caption: #4b3342;
+  --dsw-alias-label-dimmed: #6b5361;
+}
+
+/* 强调色平滑过渡（配合 hooks 里的 CSS.registerProperty） */
+:root,
+body {
+  transition: --kon-accent 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body[data-ds-dark-theme] {
+  color: #e8dde4;
+  background-color: #1a1220;
+  --kon-accent-ink: color-mix(in srgb, var(--kon-accent) 72%, #ffffff);
+  --kon-tint-1: #2c1b28;
+  --kon-tint-1: color-mix(in srgb, var(--kon-accent) 16%, #1a1220);
+  --kon-tint-2: #3a2030;
+  --kon-tint-2: color-mix(in srgb, var(--kon-accent) 26%, #1a1220);
+  --kon-tint-3: #4a2740;
+  --kon-tint-3: color-mix(in srgb, var(--kon-accent) 38%, #1a1220);
+}
+
+/* —— 五位主角强调色（进入会话/工作台后按随机角色切换）—— */
+body[data-kon-char="yui"]   { --kon-accent: #f26b8f; } /* 平泽唯 · 粉 */
+body[data-kon-char="mio"]   { --kon-accent: #4a7fc1; } /* 秋山澪 · 深蓝 */
+body[data-kon-char="ritsu"] { --kon-accent: #e8a23a; } /* 田井中律 · 明黄 */
+body[data-kon-char="mugi"]  { --kon-accent: #9d7fd6; } /* 琴吹紬 · 淡紫 */
+body[data-kon-char="azusa"] { --kon-accent: #ef8354; } /* 中野梓 · 橙红 */
+
+/* ============ L1 官方 token 重映射（关键子集） ============ */
+:root {
+  --dsw-alias-brand-primary: var(--kon-accent);
+  --dsw-alias-brand-primary-invert: #ffffff;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--kon-accent);
+  --dsw-alias-brand-text: var(--kon-accent-ink);
+
+  --dsw-alias-button-primary-fill: var(--kon-accent);
+  --dsw-alias-button-primary-hover: var(--kon-tint-3);
+  --dsw-alias-button-primary-dimmed: var(--kon-tint-1);
+  --dsw-alias-button-info-fill: var(--kon-accent);
+  --dsw-alias-button-info-hover: var(--kon-tint-3);
+  --dsw-alias-button-contrast-fill: var(--kon-accent-ink);
+  --dsw-alias-button-ghost-active-border: var(--kon-accent);
+  --dsw-alias-button-ghost-active-fill: var(--kon-tint-1);
+  --dsw-alias-button-ghost-active-hover: var(--kon-tint-2);
+  --dsw-alias-button-floating-hover: var(--kon-tint-1);
+  --dsw-alias-button-tool-bar-fill: var(--kon-tint-2);
+  --dsw-alias-button-tool-bar-hover: var(--kon-tint-3);
+  --dsw-alias-button-tool-bar-fill-invisible: var(--kon-tint-1);
+
+  --dsw-alias-interactive-bg-hover: var(--kon-tint-1);
+  --dsw-alias-interactive-bg-hover-accent: var(--kon-tint-2);
+  --dsw-alias-interactive-bg-active: var(--kon-tint-2);
+  --dsw-alias-interactive-bg-hover-solid: var(--kon-tint-1);
+
+  --dsw-alias-border-l1: color-mix(in srgb, var(--kon-accent) 14%, transparent);
+  --dsw-alias-border-l2: color-mix(in srgb, var(--kon-accent) 22%, transparent);
+  --dsw-alias-border-l3: color-mix(in srgb, var(--kon-accent) 34%, transparent);
+  --dsw-alias-border-l4: color-mix(in srgb, var(--kon-accent) 48%, transparent);
+
+  --dsw-alias-scrollbar-bg-l1: var(--kon-tint-1);
+  --dsw-alias-scrollbar-bg-l2: var(--kon-tint-1);
+  --dsw-alias-scrollbar-hover-l1: var(--kon-tint-3);
+  --dsw-alias-scrollbar-hover-l2: var(--kon-tint-3);
+
+  --dsw-alias-state-business-primary: var(--kon-accent);
+  --dsw-alias-state-business-tertiary: var(--kon-tint-1);
+
+  --dsw-alias-markdown-citation: var(--kon-tint-1);
+  --dsw-alias-markdown-inline-code: var(--kon-tint-1);
+  --dsw-alias-markdown-tag: var(--kon-tint-1);
+  --dsw-alias-markdown-code-segment-selected: var(--kon-tint-2);
+
+  --dsw-specific-sidebar-nav-item-active-accent: var(--kon-accent);
+}
+
+/* —— 毛玻璃半透明面板（浅色）—— */
+:root {
+  --dsw-alias-bg-base: color-mix(in srgb, var(--kon-accent) 8%, rgba(255, 255, 255, 0.55));
+  --dsw-alias-bg-layer-1: color-mix(in srgb, var(--kon-accent) 6%, rgba(255, 255, 255, 0.45));
+  --dsw-alias-bg-layer-2: color-mix(in srgb, var(--kon-accent) 7%, rgba(255, 255, 255, 0.5));
+  --dsw-alias-bg-layer-3: color-mix(in srgb, var(--kon-accent) 9%, rgba(255, 255, 255, 0.58));
+  --dsw-alias-bg-overlay: color-mix(in srgb, var(--kon-accent) 10%, rgba(255, 252, 253, 0.74));
+  --dsw-alias-bg-module-platform: color-mix(in srgb, var(--kon-accent) 7%, rgba(255, 255, 255, 0.46));
+  --dsw-alias-bg-multi-select: color-mix(in srgb, var(--kon-accent) 7%, rgba(255, 255, 255, 0.52));
+}
+
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-base: color-mix(in srgb, var(--kon-accent) 12%, rgba(26, 18, 32, 0.6));
+  --dsw-alias-bg-layer-1: color-mix(in srgb, var(--kon-accent) 9%, rgba(30, 20, 36, 0.52));
+  --dsw-alias-bg-layer-2: color-mix(in srgb, var(--kon-accent) 10%, rgba(34, 22, 40, 0.56));
+  --dsw-alias-bg-layer-3: color-mix(in srgb, var(--kon-accent) 13%, rgba(40, 26, 46, 0.62));
+  --dsw-alias-bg-overlay: color-mix(in srgb, var(--kon-accent) 14%, rgba(28, 18, 34, 0.78));
+  --dsw-alias-bg-module-platform: color-mix(in srgb, var(--kon-accent) 10%, rgba(30, 20, 36, 0.54));
+  --dsw-alias-bg-multi-select: color-mix(in srgb, var(--kon-accent) 10%, rgba(32, 22, 38, 0.58));
+}
+
+/* ============ L2 语义：毛玻璃质感 ============ */
+
+/* 三大主列与设置面板：半透明 + 毛玻璃模糊 */
+[data-dsh-surface="root"],
+[data-dsh-surface="sidebar"],
+[data-dsh-surface="conversation"],
+[data-dsh-surface="details"],
+[data-dsh-surface="session-header"],
+[data-dsh-surface="settings"] {
+  background-color: transparent;
+}
+
+[data-dsh-surface="sidebar"],
+[data-dsh-surface="details"],
+[data-dsh-surface="settings"] {
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+}
+
+/* 输入区：更明显的毛玻璃，保证可读性 */
+[data-dsh-surface="composer"] {
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+}
+
+[data-dsh-part="composer-input"] {
+  background-color: color-mix(in srgb, var(--kon-accent) 4%, rgba(255, 255, 255, 0.82));
+}
+
+/* 消息流正文：保证可读（不套花哨字体，背景透光但文字清晰） */
+[data-dsh-part="message-body"] {
+  font-family: var(--dsw-font-family);
+}
+
+/* ============ K-ON 专有元素（由 hooks.mjs 创建） ============ */
+
+/* 角色立绘背景（毛玻璃动态模糊 + 呼吸感）
+   外层 .kon-char 只管淡入淡出与轻微缩放，内层 .kon-char-bg 承载图像、
+   模糊与呼吸动画，避免 transform 动画与过渡互相打架。 */
+.kon-char {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+}
+.kon-char.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.kon-char-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 22% center;
+  filter: blur(3px) saturate(1.3) contrast(1.05);
+  animation: kon-breathe 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 表面层：切换瞬间清晰立绘登场，随后淡出退到背景 */
+.kon-surface {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+}
+.kon-surface.kon-surface-on {
+  opacity: 1;
+  transform: scale(1);
+}
+.kon-surface-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 22% center;
+  filter: blur(1px) saturate(1.08);
+}
+
+/* 角色立绘上的可读性纱幕 */
+.kon-char-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--kon-accent) 20%, rgba(240, 230, 234, 0.58)) 0%,
+    color-mix(in srgb, var(--kon-accent) 14%, rgba(244, 236, 239, 0.78)) 34%,
+    rgba(246, 240, 242, 0.90) 58%,
+    color-mix(in srgb, var(--kon-accent) 16%, rgba(244, 238, 240, 0.92)) 100%
+  );
+  pointer-events: none;
+}
+body[data-ds-dark-theme] .kon-char-scrim {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--kon-accent) 24%, rgba(16, 10, 18, 0.58)) 0%,
+    color-mix(in srgb, var(--kon-accent) 18%, rgba(14, 9, 16, 0.78)) 34%,
+    rgba(14, 9, 16, 0.88) 58%,
+    color-mix(in srgb, var(--kon-accent) 22%, rgba(16, 10, 18, 0.90)) 100%
+  );
+}
+
+@keyframes kon-breathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.035) translateY(-4px); }
+}
+
+/* 角色名徽标（罗马音 + 强调色） */
+.kon-badge {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 2147483001;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--dsw-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background: color-mix(in srgb, var(--kon-accent) 82%, #00000000);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--kon-accent) 40%, transparent);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    background 0.5s ease;
+  pointer-events: none;
+}
+.kon-badge.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.kon-badge .kon-note {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #fff 35%, transparent);
+}
+
+/* 左侧功能栏：轻音少女音乐元素（固定装饰，不影响功能） */
+.kon-sidebar-deco {
+  position: fixed;
+  left: 14px;
+  bottom: 12px;
+  z-index: 2147482991;
+  font-family: var(--dsw-font-family);
+  font-size: 13px;
+  letter-spacing: 7px;
+  color: var(--kon-accent);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: kon-deco-bob 4s ease-in-out infinite;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.55);
+}
+@keyframes kon-deco-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* 樱花画布（前景层，缓落） */
+#kon-sakura {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2147482990;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kon-char { animation: none; transition-duration: 0.01ms; }
+  #kon-sakura { display: none; }
+}
