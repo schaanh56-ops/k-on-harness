@@ -1,0 +1,26 @@
+{
+  "name": "dsh-kon-pet",
+  "version": "1.0.0",
+  "description": "K-ON! Yui Hirasawa desktop pet for the dsh web GUI: floating cutout with breathe / mouse-follow / click-reaction animations, 20 dialogue lines, and DeepSeek API balance integration (reads /api-balance).",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "kon",
+    "k-on",
+    "desktop-pet",
+    "balance"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./patch.yml"
+    }
+  }
+}
