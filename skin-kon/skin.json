@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.linxin666.org/dsh-skin/v2.json",
+  "skinManifestVersion": 2,
+  "id": "kon",
+  "name": "轻音少女 · 放课后TEA TIME",
+  "nameEn": "K-ON! After School Tea Time",
+  "author": "K-ON! theme",
+  "tagline": "放课后TEA TIME · 五角色随机登场 · 樱花飘落 · 毛玻璃合照",
+  "description": "以《轻音少女!》为灵感的主题皮肤：主页为毛玻璃质感五人合照，进入会话/工作台时从五位主角（中野梓 / 秋山澪 / 琴吹紬 / 平泽唯 / 田井中律）中随机登场一位，整体强调色随之切换；顶部缓落樱花、标题栏带 K-ON! 风格徽标、圆润可爱字体，半透明毛玻璃面板透出背景——放课后音乐室的治愈氛围。",
+  "tags": [
+    "kon",
+    "k-on",
+    "anime",
+    "music",
+    "sakura",
+    "pink",
+    "moe"
+  ],
+  "accent": "#f26b8f",
+  "order": 20,
+  "version": "1.0.0",
+  "license": "fan-made",
+  "attribution": "K-ON! / けいおん! characters © kakifly / Houbunsha; fan theme, non-commercial",
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "x-org.linxin666.skin-center/v1alpha1",
+        "kind": "SkinHooks",
+        "optional": true
+      }
+    ]
+  },
+  "contributes": {
+    "stylesheet": "skin.css",
+    "patches": "patches.css",
+    "backgroundMedia": {
+      "light": {
+        "type": "image",
+        "src": "assets/group.jpg",
+        "scrim": "linear-gradient(rgba(255,244,246,0.44) 0%, rgba(255,240,244,0.5) 55%, rgba(255,235,241,0.56) 100%)"
+      },
+      "dark": {
+        "type": "image",
+        "src": "assets/group.jpg",
+        "scrim": "linear-gradient(rgba(30,18,28,0.58) 0%, rgba(34,20,32,0.62) 55%, rgba(38,22,36,0.66) 100%)"
+      }
+    }
+  },
+  "facets": {
+    "client": {
+      "entry": "hooks.mjs",
+      "apiVersion": "x-org.linxin666.skin-center/v1alpha1"
+    }
+  }
+}
