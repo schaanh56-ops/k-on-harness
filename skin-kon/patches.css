@@ -1,0 +1,42 @@
+/* ============================================================
+   K-ON! 轻音少女  —  patches.css（L3 自由补丁，高敏感）
+   仅用于语义属性覆盖不到的壳层细节。注意：皮肤中心会把非 :root/html/
+   body 的选择器强制限定为 html[data-dsh-skin] 的后代，因此所有 html[…]
+   级标记一律改写为 body[…]（backdrop/content 标记同时打在 body 上）。
+   ============================================================ */
+
+/* 输入区毛玻璃：仅当背景图可见且对话存在消息时才启用磨砂前置（#777 约定） */
+body[data-dsh-backdrop-active][data-dsh-conversation-content] [data-slot="conversation.composer"] {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--kon-accent) 8%, rgba(255, 250, 251, 0.82)),
+    rgba(255, 252, 253, 0.6) 60%,
+    transparent
+  );
+  backdrop-filter: blur(16px) saturate(1.12);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+}
+body[data-ds-dark-theme][data-dsh-backdrop-active][data-dsh-conversation-content] [data-slot="conversation.composer"] {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--kon-accent) 14%, rgba(22, 13, 25, 0.8)),
+    rgba(20, 12, 23, 0.6) 60%,
+    transparent
+  );
+}
+
+/* 代码块 / 引用块在毛玻璃背景上补一层实底，保证代码可读 */
+body[data-dsh-backdrop-active] pre,
+body[data-dsh-backdrop-active] [data-dsh-part="message-body"] pre {
+  background-color: color-mix(in srgb, var(--kon-tint-1) 55%, rgba(255, 255, 255, 0.9));
+}
+body[data-ds-dark-theme][data-dsh-backdrop-active] pre,
+body[data-ds-dark-theme][data-dsh-backdrop-active] [data-dsh-part="message-body"] pre {
+  background-color: rgba(12, 8, 14, 0.82);
+}
+
+/* 侧栏当前项：强调色下划线/胶囊，圆润 */
+[data-dsh-surface="sidebar"] [aria-current],
+[data-dsh-surface="sidebar"] [data-active] {
+  color: var(--kon-accent-ink);
+}
