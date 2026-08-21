@@ -1,0 +1,4 @@
+# dsh-kon-pet bundle patch: registers the plugin entry.
+- insert:
+    - id: dsh-kon-pet
+      name: dsh-kon-pet
